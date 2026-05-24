@@ -1,0 +1,133 @@
+openapi: 3.0.0
+
+info:
+  title: Beauty Salon API
+  version: 1.0.0
+  description: REST API информационной системы управления салоном красоты.
+
+servers:
+  - url: http://localhost:8080
+    description: Локальный backend-сервер
+
+paths:
+  /api/auth/login:
+    post:
+      summary: Авторизация пользователя
+      tags:
+        - Auth
+      responses:
+        "200":
+          description: Успешная авторизация
+
+  /api/clients:
+    get:
+      summary: Получение списка клиентов
+      tags:
+        - Clients
+      responses:
+        "200":
+          description: Список клиентов
+
+    post:
+      summary: Создание клиента
+      tags:
+        - Clients
+      responses:
+        "200":
+          description: Клиент создан
+
+  /api/clients/{id}:
+    delete:
+      summary: Удаление клиента
+      tags:
+        - Clients
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Клиент удалён
+
+  /api/masters:
+    get:
+      summary: Получение списка мастеров
+      tags:
+        - Masters
+      responses:
+        "200":
+          description: Список мастеров
+
+    post:
+      summary: Создание мастера
+      tags:
+        - Masters
+      responses:
+        "200":
+          description: Мастер создан
+
+  /api/masters/{id}:
+    delete:
+      summary: Удаление мастера
+      tags:
+        - Masters
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Мастер удалён
+
+  /api/services:
+    get:
+      summary: Получение списка услуг
+      tags:
+        - Services
+      responses:
+        "200":
+          description: Список услуг
+
+    post:
+      summary: Создание услуги
+      tags:
+        - Services
+      responses:
+        "200":
+          description: Услуга создана
+
+  /api/services/{id}:
+    delete:
+      summary: Удаление услуги
+      tags:
+        - Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Услуга удалена
+
+  /api/visits:
+    get:
+      summary: Получение списка посещений
+      tags:
+        - Visits
+      responses:
+        "200":
+          description: Список посещений
+
+    post:
+      summary: Создание посещения
+      tags:
+        - Visits
+      responses:
+        "200":
+          description: Посещение создано

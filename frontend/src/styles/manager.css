@@ -1,0 +1,135 @@
+.manager-page {
+  min-height: 100vh;
+  padding: 42px 24px;
+  background:
+    radial-gradient(circle at top left, #e6f7ff, transparent 25%),
+    radial-gradient(circle at bottom right, #ffe4f3, transparent 25%),
+    linear-gradient(135deg, #f5fbff, #fff7fb);
+}
+
+.manager-panel {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px;
+  border-radius: 34px;
+  background: white;
+  box-shadow: 0 24px 60px rgba(70, 90, 140, 0.12);
+}
+
+.manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.manager-header h1 {
+  margin: 0;
+  font-size: 42px;
+}
+
+.manager-header p {
+  margin-top: 8px;
+  color: #777;
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+}
+
+.manager-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 32px;
+}
+
+.toolbar-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: #faf7ff;
+}
+
+.toolbar-card h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.toolbar-row {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 14px;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.report-card {
+  min-height: 180px;
+  padding: 26px;
+  border-radius: 28px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+.report-card h3 {
+  margin: 0 0 20px;
+  font-size: 18px;
+}
+
+.report-card p {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.report-card.blue {
+  background: linear-gradient(135deg, #d9ecff, #eef6ff);
+}
+
+.report-card.purple {
+  background: linear-gradient(135deg, #f0dcff, #faf2ff);
+}
+
+.report-card.pink {
+  background: linear-gradient(135deg, #ffdceb, #fff1f7);
+}
+
+.report-card.green {
+  background: linear-gradient(135deg, #dcffef, #effff8);
+}
+
+.report-card.orange {
+  background: linear-gradient(135deg, #ffe7cf, #fff5ea);
+}
+
+.report-card.cyan {
+  background: linear-gradient(135deg, #d8fbff, #eefeff);
+}
+
+.clients-list {
+  margin-top: 14px;
+  padding-left: 18px;
+}
+
+.clients-list li {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 1000px) {
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manager-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .manager-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

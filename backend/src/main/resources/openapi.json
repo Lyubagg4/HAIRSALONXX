@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Beauty Salon API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "summary": "Авторизация пользователя",
+        "responses": {
+          "200": {
+            "description": "Успешная авторизация"
+          }
+        }
+      }
+    },
+
+    "/api/clients": {
+      "get": {
+        "summary": "Получение клиентов"
+      },
+      "post": {
+        "summary": "Создание клиента"
+      }
+    },
+
+    "/api/masters": {
+      "get": {
+        "summary": "Получение мастеров"
+      },
+      "post": {
+        "summary": "Создание мастера"
+      }
+    },
+
+    "/api/services": {
+      "get": {
+        "summary": "Получение услуг"
+      },
+      "post": {
+        "summary": "Создание услуги"
+      }
+    },
+
+    "/api/visits": {
+      "get": {
+        "summary": "Получение посещений"
+      },
+      "post": {
+        "summary": "Создание посещения"
+      }
+    }
+  }
+}

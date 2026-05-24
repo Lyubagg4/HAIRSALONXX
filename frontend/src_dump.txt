@@ -1,0 +1,88 @@
+\n===== ./src/auth/AuthProvider.jsx =====\n
+\n===== ./src/auth/ProtectedRoute.jsx =====\n
+\n===== ./src/styles/login.css =====\n
+\n===== ./src/styles/main.css =====\n
+\n===== ./src/styles/admin.css =====\n
+\n===== ./src/components/ClientForm.jsx =====\n
+\n===== ./src/components/ClientTable.jsx =====\n
+\n===== ./src/components/MasterForm.jsx =====\n
+\n===== ./src/components/Navbar.jsx =====\n
+\n===== ./src/components/VisitForm.jsx =====\n
+\n===== ./src/main.jsx =====\n
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./styles/main.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);\n===== ./src/App.jsx =====\n
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import LoginPage from "./pages/LoginPage";
+import AdminPage from "./pages/AdminPage";
+import ManagerPage from "./pages/ManagerPage";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/admin" element={<AdminPage />} />
+
+        <Route path="/manager" element={<ManagerPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;\n===== ./src/api/visitApi.js =====\n
+\n===== ./src/api/masterApi.js =====\n
+\n===== ./src/api/clientApi.js =====\n
+\n===== ./src/api/serviceApi.js =====\n
+\n===== ./src/api/reportApi.js =====\n
+\n===== ./src/api/axiosInstance.js =====\n
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: "http://localhost:8080",
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});\n===== ./src/api/authApi.js =====\n
+import { api } from "./axiosInstance";
+
+export async function login(phone, password) {
+  const response = await api.post("/api/auth/login", {
+    phone,
+    password,
+  });
+
+  return response.data;
+}\n===== ./src/pages/LoginPage.jsx =====\n
+export default function LoginPage() {
+  return (
+    <div>
+      <h1>Login</h1>
+    </div>
+  );
+}\n===== ./src/pages/ManagerPage.jsx =====\n
+export default function ManagerPage() {
+  return (
+    <div>
+      <h1>Руководитель</h1>
+    </div>
+  );
+}

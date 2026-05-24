@@ -1,0 +1,165 @@
+.admin-page {
+  min-height: calc(100vh - 76px);
+  padding: 54px 24px 20px;
+  background:
+    radial-gradient(circle at top left, #fff0fb, transparent 28%),
+    radial-gradient(circle at bottom right, #e9f8ff, transparent 32%),
+    linear-gradient(135deg, #fff7fc, #f2fbff);
+}
+
+.hero-card {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  padding: 70px 54px;
+  border-radius: 34px;
+  background: rgba(255, 247, 253, 0.96);
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(120, 80, 150, 0.14);
+}
+
+.hero-icon {
+  font-size: 54px;
+  color: #9b2cff;
+  margin-bottom: 18px;
+}
+
+.hero-card h1 {
+  margin: 0;
+  font-size: 52px;
+}
+
+.hero-card p {
+  margin: 10px 0 46px;
+  color: #777;
+  font-size: 20px;
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.action-card {
+  min-height: 170px;
+  padding: 28px;
+  border-radius: 24px;
+  background: white;
+  color: #333;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 14px 34px rgba(80, 60, 110, 0.13);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-card span {
+  font-size: 34px;
+}
+
+.window-card {
+  width: min(100%, 1200px);
+  margin: 36px auto 0;
+  padding: 44px;
+  border-radius: 34px;
+  box-shadow: 0 18px 45px rgba(90, 80, 120, 0.14);
+}
+
+.blue-bg {
+  background: #f0fbff;
+}
+
+.purple-bg {
+  background: #fbf3ff;
+}
+
+.pink-bg {
+  background: #fff1f8;
+}
+
+.green-bg {
+  background: #f1fff8;
+}
+
+.back-button {
+  margin-bottom: 32px;
+  background: transparent;
+  color: #555;
+  padding: 0;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.window-card form {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 48px;
+  padding: 44px;
+  background: white;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  box-shadow: 0 14px 34px rgba(80, 60, 110, 0.12);
+}
+
+.window-card form h2 {
+  margin: 0 0 12px;
+  font-size: 34px;
+}
+
+.window-card input,
+.window-card select {
+  height: 58px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+
+.window-card select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0 18px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5 8 12l6.5-6.5' stroke='%238b2cff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+}
+
+.window-card input:focus,
+.window-card select:focus {
+  border-color: #a855f7;
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15);
+  outline: none;
+}
+
+.window-card form button {
+  height: 58px;
+  margin-top: 8px;
+  border-radius: 18px;
+  font-size: 17px;
+}
+
+.window-card table {
+  margin-top: 28px;
+}
+
+@media (max-width: 900px) {
+  .action-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .window-card {
+    padding: 28px;
+  }
+
+  .window-card form {
+    padding: 30px;
+  }
+}
