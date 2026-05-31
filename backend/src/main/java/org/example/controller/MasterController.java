@@ -4,7 +4,6 @@ import org.example.auth.Role;
 import org.example.auth.RoleChecker;
 import org.example.entity.dto.MasterRequest;
 import org.example.entity.dto.MasterResponse;
-import org.example.service.ClientService;
 import org.example.service.MasterService;
 import ru.tinkoff.kora.common.Component;
 import ru.tinkoff.kora.http.common.HttpMethod;
@@ -23,7 +22,10 @@ public class MasterController {
     private final MasterService masterService;
     private final RoleChecker roleChecker;
 
-    public MasterController(MasterService masterService, RoleChecker roleChecker) {
+    public MasterController(
+            MasterService masterService,
+            RoleChecker roleChecker
+    ) {
         this.masterService = masterService;
         this.roleChecker = roleChecker;
     }
@@ -33,7 +35,7 @@ public class MasterController {
     public List<MasterResponse> getAllMasters(
             @Header("Authorization") String auth
     ) {
-        roleChecker.requireRole(auth, Role.ADMIN);
+        roleChecker.requireRole(auth, Role.ADMIN, Role.MANAGER);
         return masterService.getAllMasters();
     }
 

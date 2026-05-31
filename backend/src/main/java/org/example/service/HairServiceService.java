@@ -32,34 +32,30 @@ public class HairServiceService {
     public HairServiceResponse createService(HairServiceRequest request) {
         validateService(request);
 
-        hairServiceRepository.create(
+        HairService service = hairServiceRepository.create(
                 request.name(),
+                request.category(),
                 request.type(),
                 request.hallType(),
                 request.price()
         );
 
-        return new HairServiceResponse(
-                null,
-                request.name(),
-                request.type(),
-                request.hallType(),
-                request.price()
-        );
+        return toResponse(service);
     }
 
     public HairServiceResponse updateService(Long id, HairServiceRequest request) {
         validateService(request);
 
-        hairServiceRepository.update(
+        HairService service = hairServiceRepository.update(
                 id,
                 request.name(),
+                request.category(),
                 request.type(),
                 request.hallType(),
                 request.price()
         );
 
-        return toResponse(hairServiceRepository.findById(id));
+        return toResponse(service);
     }
 
     public void deleteService(Long id) {
@@ -68,6 +64,7 @@ public class HairServiceService {
 
     private void validateService(HairServiceRequest request) {
         validationService.requireText(request.name(), "Название услуги");
+        validationService.requireText(request.category(), "Категория услуги");
         validationService.requireText(request.type(), "Тип услуги");
         validationService.requireText(request.hallType(), "Зал");
         validationService.validatePrice(request.price());
@@ -77,6 +74,7 @@ public class HairServiceService {
         return new HairServiceResponse(
                 service.id(),
                 service.name(),
+                service.category(),
                 service.type(),
                 service.hallType(),
                 service.price()

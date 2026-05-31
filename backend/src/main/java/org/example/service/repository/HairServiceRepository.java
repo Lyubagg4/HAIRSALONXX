@@ -10,28 +10,55 @@ import java.util.List;
 @Repository
 public interface HairServiceRepository extends JdbcRepository {
 
-    @Query("SELECT id, name, type, hall_type, price FROM services")
+    @Query("""
+            SELECT id, name, category, type, hall_type, price
+            FROM services
+            ORDER BY category, name
+            """)
     List<HairService> findAll();
 
-    @Query("SELECT id, name, type, hall_type, price FROM services WHERE id = :id")
+    @Query("""
+            SELECT id, name, category, type, hall_type, price
+            FROM services
+            WHERE id = :id
+            """)
     HairService findById(Long id);
 
     @Query("""
-            INSERT INTO services(name, type, hall_type, price)
-            VALUES (:name, :type, :hallType, :price)
+            INSERT INTO services(name, category, type, hall_type, price)
+            VALUES (:name, :category, :type, :hallType, :price)
+            RETURNING id, name, category, type, hall_type, price
             """)
-    void create(String name, String type, String hallType, Double price);
+    HairService create(
+            String name,
+            String category,
+            String type,
+            String hallType,
+            Double price
+    );
 
     @Query("""
             UPDATE services
             SET name = :name,
+                category = :category,
                 type = :type,
                 hall_type = :hallType,
                 price = :price
             WHERE id = :id
+            RETURNING id, name, category, type, hall_type, price
             """)
-    void update(Long id, String name, String type, String hallType, Double price);
+    HairService update(
+            Long id,
+            String name,
+            String category,
+            String type,
+            String hallType,
+            Double price
+    );
 
-    @Query("DELETE FROM services WHERE id = :id")
+    @Query("""
+            DELETE FROM services
+            WHERE id = :id
+            """)
     void deleteById(Long id);
 }

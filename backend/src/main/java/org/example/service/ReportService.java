@@ -1,12 +1,8 @@
 package org.example.service;
 
 import org.example.entity.dto.ReportResponse;
-import org.example.service.repository.UserRepository;
-import org.example.service.repository.VisitRepository;
-import org.example.service.repository.VisitServiceRepository;
+import org.example.service.repository.ReportRepository;
 import ru.tinkoff.kora.common.Component;
-import ru.tinkoff.kora.http.common.annotation.Query;
-
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,59 +10,64 @@ import java.util.List;
 @Component
 public class ReportService {
 
-    private final VisitRepository visitRepository;
-    private final VisitServiceRepository visitServiceRepository;
-    private final UserRepository userRepository;
+    private final ReportRepository reportRepository;
 
-    public ReportService(
-            VisitRepository visitRepository,
-            VisitServiceRepository visitServiceRepository,
-            UserRepository userRepository
-    ) {
-        this.visitRepository = visitRepository;
-        this.visitServiceRepository = visitServiceRepository;
-        this.userRepository = userRepository;
-    }
-
-    public List<ReportResponse> getClientsByDate(LocalDate date) {
-        return visitRepository.findClientNamesByDate(date)
-                .stream()
-                .map(name -> new ReportResponse("Клиент", name))
-                .toList();
-    }
-
-    public ReportResponse getMasterIncome(Long masterId) {
-        Double income = visitRepository.getMasterIncome(masterId);
-        return new ReportResponse("Заработок мастера", String.valueOf(income));
+    public ReportService(ReportRepository reportRepository) {
+        this.reportRepository = reportRepository;
     }
 
     public ReportResponse getPopularService() {
-        String serviceName = visitServiceRepository.getPopularServiceName();
-        return new ReportResponse("Популярная услуга", serviceName);
+        String value = reportRepository.getPopularService();
+
+        return new ReportResponse(
+                "Популярная услуга",
+                value == null ? "Нет данных" : value
+        );
     }
 
     public ReportResponse getGenderStats() {
-        Long maleCount = userRepository.getMaleClientsCount();
-        Long femaleCount = userRepository.getFemaleClientsCount();
+        String value = reportRepository.getGenderStats();
 
         return new ReportResponse(
-                "Соотношение клиентов по полу",
-                "Мужчин: " + maleCount + ", женщин: " + femaleCount
+                "Соотношение клиентов",
+                value == null ? "Нет данных" : value
         );
     }
 
     public ReportResponse getRegularClientsCount() {
-        Long count = userRepository.getRegularClientsCount();
-        return new ReportResponse("Количество постоянных клиентов", String.valueOf(count));
+        Integer value = reportRepository.getRegularClientsCount();
+
+        return new ReportResponse(
+                "Постоянные клиенты",
+                value == null ? "0" : String.valueOf(value)
+        );
     }
 
     public ReportResponse getTopMaster() {
-        String name = visitRepository.getTopMasterName();
-        Long count = visitRepository.getTopMasterVisitsCount();
+        String value = reportRepository.getTopMaster();
 
         return new ReportResponse(
                 "Лучший мастер",
-                name + ", обслужено клиентов: " + count
+                value == null ? "Нет данных" : value
         );
+    }
+
+    public ReportResponse getMasterIncome(Long masterId) {
+        Double value = reportRepository.getMasterIncome(masterId);
+
+        return new ReportResponse(
+                "Доход мастера",
+                value == null ? "0 ₽" : value + " ₽"
+        );
+    }
+
+    public List<ReportResponse> getClientsByDate(LocalDate date) {
+        return reportRepository.getClientsByDate(date)
+                .stream()
+                .map(client -> new ReportResponse(
+                        "Клиент",
+                        client
+                ))
+                .toList();
     }
 }

@@ -35,7 +35,7 @@ public class HairServiceController {
     public List<HairServiceResponse> getAllServices(
             @Header("Authorization") String auth
     ) {
-        roleChecker.requireRole(auth, Role.ADMIN);
+        roleChecker.requireRole(auth, Role.ADMIN, Role.MANAGER);
         return hairServiceService.getAllServices();
     }
 
