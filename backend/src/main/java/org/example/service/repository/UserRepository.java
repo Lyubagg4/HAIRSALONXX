@@ -104,4 +104,12 @@ public interface UserRepository extends JdbcRepository {
               AND gender = 'FEMALE'
             """)
     Long getFemaleClientsCount();
+
+    @Query("""
+        INSERT INTO users(full_name, phone, password_hash, role)
+        VALUES (:fullName, :phone, :password, 'ADMIN')
+        RETURNING id, full_name, phone, gender, category, discount,
+                  specialization, qualification, password_hash, role
+        """)
+    User createAdmin(String fullName, String phone, String password);
 }

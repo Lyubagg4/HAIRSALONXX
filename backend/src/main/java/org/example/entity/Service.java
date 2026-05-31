@@ -3,10 +3,10 @@ package org.example.entity;
 import ru.tinkoff.kora.database.jdbc.EntityJdbc;
 
 @EntityJdbc
-public record HairService(
+public record Service(
         Long id,
         String name,
-        String category,
+        ServiceCategory category,
         String type,
         String hallType,
         Double price
